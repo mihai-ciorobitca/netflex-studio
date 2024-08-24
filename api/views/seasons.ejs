@@ -24,13 +24,13 @@
     <div class="py-5">
         <div class="container">
             <div class="row">
-                <% names.forEach(name => { %>
+                <% seasons.forEach(season => { %>
                 <div class="col-lg-3 col-md-6 col-sm-12 mb-4">
                     <div class="card">
                         <img class="card-img-top" src="https://static.pingendo.com/cover-moon.svg" alt="Card image cap">
                         <div class="card-body">
-                            <h4 class="card-title"><%= name %></h4>
-                            <a href="/name=<%= name %>/" class="btn btn-primary">Open</a>
+                            <h4 class="card-title"><%= season %></h4>
+                            <a href="/name=<%= name %>/season=<%= season %>" class="btn btn-primary">Open</a>
                         </div>
                     </div>
                 </div>

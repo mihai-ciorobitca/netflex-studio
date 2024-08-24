@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Netflex Studio</title>
+    <meta name="description" content="Watch videos for free">
+    <meta name="author" content="Network Studio">
+    <meta name="keywords" content="Network Studio, Network, Studio, Movies, Free, Online movies">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="icon" href="/assets/logo.jpg">
+    <style>
+        body,
+        html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .video-container {
+            height: 100%;
+            position: relative;
+        }
+
+        .carousel-control-prev,
+        .carousel-control-next {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 2;
+            display: none;
+        }
+
+        .carousel-control-prev {
+            left: 10px;
+        }
+
+        .carousel-control-next {
+            right: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="d-flex justify-content-center align-items-center video-container">
+        <div class="embed-responsive embed-responsive-16by9 w-100 h-100">
+            <iframe src="<%= url %>?logo=false" allowfullscreen class="embed-responsive-item"></iframe>
+        </div>
+        <% if (prevUrl) { %>
+        <a class="carousel-control-prev" role="button">
+            <span class="carousel-control-prev-icon"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <% } %>
+        <% if (nextUrl) { %>
+        <a class="carousel-control-next" role="button">
+            <span class="carousel-control-next-icon"></span>
+            <span class="sr-only">Next</span>
+        </a>
+        <% } %>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        const prevControl = document.querySelector('.carousel-control-prev');
+        const nextControl = document.querySelector('.carousel-control-next');
+        let hideControlsTimeout;
+
+        function showControls() {
+            if (prevControl) prevControl.style.display = 'flex';
+            if (nextControl) nextControl.style.display = 'flex';
+            clearTimeout(hideControlsTimeout);
+            hideControlsTimeout = setTimeout(hideControls, 3000);
+        }
+
+        function hideControls() {
+            if (prevControl) prevControl.style.display = 'none';
+            if (nextControl) nextControl.style.display = 'none';
+        }
+
+        document.addEventListener('mousemove', showControls);
+
+        if (prevControl) {
+            prevControl.addEventListener('click', function () {
+                window.location.href = '<%= prevUrl %>';
+            });
+        }
+
+        if (nextControl) {
+            nextControl.addEventListener('click', function () {
+                window.location.href = '<%= nextUrl %>';
+            });
+        }
+
+        // Initial call to hide controls after 3 seconds
+        hideControlsTimeout = setTimeout(hideControls, 3000);
+    </script>
+</body>
+
+</html>
