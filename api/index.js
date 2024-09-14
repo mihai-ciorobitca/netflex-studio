@@ -10,9 +10,6 @@ const SECRET_KEY = process.env.SECRET_KEY;
 const supabaseClient = createClient(URL_BASE, SECRET_KEY);
 const app = express();
 
-// Initialize cache with apicache
-const cache = apicache.middleware;
-
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 
@@ -29,7 +26,8 @@ app.get([
     let query = supabaseClient.from('movies').select();
 
     if (name) {
-
+            query = query.eq('name', season);
+        
         if (season) {
             query = query.eq('season', season);
 
