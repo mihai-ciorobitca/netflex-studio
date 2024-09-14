@@ -24,7 +24,7 @@ app.get([
     '/name=:name/part=:part/',
     '/name=:name/season=:season/',
     '/name=:name/season=:season/episode=:episode/',
-], cache('10 minutes'), async (req, res) => {
+], async (req, res) => {
     const { name, season, episode, part } = req.params;
     let query = supabaseClient.from('movies').select();
 
