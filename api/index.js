@@ -26,7 +26,7 @@ app.get([
     let query = supabaseClient.from('movies').select();
 
     if (name) {
-            query = query.eq('name', season);
+            query = query.eq('name', name);
         
         if (season) {
             query = query.eq('season', season);
@@ -100,7 +100,6 @@ app.get([
         }
 
         try {
-            query = query.eq("name", name);
 
             const { data, error } = await query.select();
 
