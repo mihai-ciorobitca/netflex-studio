@@ -121,11 +121,12 @@ app.get([
     }
 
     try {
-        const { data, error } = await query.select();
+        const { data, error } = await query.select("name");
 
         if (error) throw error;
 
         const names = [...new Set(data.map(item => item.name))].sort();
+
         return res.render('index', { names });
 
     } catch (error) {

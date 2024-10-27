@@ -25,9 +25,9 @@
         <div class="container">
             <div class="row">
                 <% parts.forEach(part => { %>
-                <div class="col-lg-3 col-md-6 col-sm-12 mb-4">
+                <div class="col-lg-3 col-md-4 col-6 mb-4">
                     <div class="card">
-                        <img class="card-img-top" src="https://static.pingendo.com/cover-moon.svg" alt="Card image cap">
+                        <img src= "/assets/<%= name %>.png" width="100%" height="auto" class="card-img-top" alt="<%= name %>">
                         <div class="card-body">
                             <h4 class="card-title"><%= part %></h4>
                             <a href="/name=<%= name %>/part=<%= part %>/" class="btn btn-primary">Open</a>
