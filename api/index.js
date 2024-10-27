@@ -15,6 +15,15 @@ app.set('views', path.join(__dirname, 'views'));
 
 app.use(express.static(path.join(__dirname, 'public')));
 
+const assets = {
+    "supermario": "4fcc4d8d-d91c-4396-bb47-7dd80c399da1",
+    "superman":   "29277468-8f0e-4932-8e0a-562acd7abba3",
+    "seinfeld":   "d0377945-f856-488d-bc1c-1cfbaccee355",
+    "narcos":     "38537c84-1070-49f7-a45c-bf6c1b5a2f72",
+    "mr.robot":   "b38c953d-41cd-4916-877f-a18c8eeed254",
+    "jigsaw":     "46f939bd-f7de-41c5-b65b-f602cc89b427",
+}
+
 app.get([
     '/',
     '/name=:name/',
@@ -109,11 +118,11 @@ app.get([
                 .sort();
 
             if (seasons.length > 0) {
-                return res.render('seasons', { seasons, name });
+                return res.render('seasons', { seasons, name, assets });
             }
 
             const parts = [...new Set(data.map(item => item.part))].sort();
-            return res.render('parts', { parts, name });
+            return res.render('parts', { parts, name, assets });
 
         } catch (error) {
             return res.status(500).send(`Error: ${error.message}`);
@@ -127,7 +136,7 @@ app.get([
 
         const names = [...new Set(data.map(item => item.name))].sort();
 
-        return res.render('index', { names });
+        return res.render('index', {names, assets});
 
     } catch (error) {
         return res.status(500).send(`Error: ${error.message}`);

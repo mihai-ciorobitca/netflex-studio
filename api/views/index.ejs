@@ -9,32 +9,45 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
     <link rel="icon" href="/assets/logo.jpg">
+    <style>
+        /* Fixed Aspect Ratio */
+        .card-img-top {
+            width: 100%;
+            height: auto; 
+            object-fit: cover; 
+            aspect-ratio: 2/3; 
+        }
+
+        .card {
+            height: 100%; 
+        }
+    </style>
 </head>
 
 <body>
-    <div class="py-5">
+    <div class="py-2">
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                    <h1 class="d-flex justify-content-center" contenteditable="true">Videos</h1>
+                    <h1 class="d-flex justify-content-center">Videos</h1>
                 </div>
             </div>
         </div>
     </div>
-    <div class="py-5">
+    <div class="py-2">
         <div class="container">
             <div class="row">
                 <% names.forEach(name => { %>
-                <div class="col-lg-3 col-md-4 col-6 mb-4">
-                    <div class="card">
-                        <img src= "/assets/<%= name %>.png" width="100%" height="auto" class="card-img-top" alt="<%= name %>">
-                        <div class="card-body">
-                            <h4 class="card-title"><%= name %></h4>
-                            <a href="/name=<%= name %>/" class="btn btn-primary">Open</a>
+                    <a style="text-decoration: none" class="col-lg-3 col-md-4 col-6 mb-4" href="/name=<%= name %>">
+                        <div class="card">
+                            <img src="https://cdn.videas.fr/v-medias/uploads/<%= assets[name.toLowerCase()] %>" class="card-img-top" alt="<%= name %>"/>
+                            <div class="card-body">
+                                <h4 class="card-title d-none d-lg-block d-md-block"><%= name %></h4>
+                                <h6 class="card-title d-block d-lg-none d-md-none"><%= name %></h6>
+                            </div>
                         </div>
-                    </div>
-                </div>
-                <% }); %>
+                    </a>
+                <% }); %>                
             </div>
         </div>
     </div>

@@ -12,7 +12,7 @@
 </head>
 
 <body>
-    <div class="py-5">
+    <div class="py-2">
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
@@ -21,19 +21,19 @@
             </div>
         </div>
     </div>
-    <div class="py-5">
+    <div class="py-2">
         <div class="container">
             <div class="row">
                 <% seasons.forEach(season => { %>
-                <div class="col-lg-3 col-md-4 col-6 mb-4">
+                <a href="/name=<%= name %>/season=<%= season %>" style="text-decoration: none" class="col-lg-3 col-md-4 col-6 mb-4">
                     <div class="card">
-                        <img src= "/assets/<%= name %>.png" width="100%" height="auto" class="card-img-top" alt="<%= name %>">
+                        <img src= "https://cdn.videas.fr/v-medias/uploads/<%= assets[name.toLowerCase()] %>" width="100%" height="auto" class="card-img-top" alt="<%= name %>">
                         <div class="card-body">
-                            <h4 class="card-title"><%= season %></h4>
-                            <a href="/name=<%= name %>/season=<%= season %>" class="btn btn-primary">Open</a>
+                            <h4 class="card-title d-none d-lg-block d-md-block"><%= season %></h4>
+                            <h6 class="card-title d-block d-lg-none d-md-none"><%= season %></h6>
                         </div>
                     </div>
-                </div>
+                </a>
                 <% }); %>
             </div>
         </div>
