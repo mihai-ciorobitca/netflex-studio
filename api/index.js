@@ -17,11 +17,11 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 const assets = {
     "supermario": "4fcc4d8d-d91c-4396-bb47-7dd80c399da1",
-    "superman":   "29277468-8f0e-4932-8e0a-562acd7abba3",
-    "seinfeld":   "d0377945-f856-488d-bc1c-1cfbaccee355",
-    "narcos":     "38537c84-1070-49f7-a45c-bf6c1b5a2f72",
-    "mr.robot":   "b38c953d-41cd-4916-877f-a18c8eeed254",
-    "jigsaw":     "46f939bd-f7de-41c5-b65b-f602cc89b427",
+    "superman": "29277468-8f0e-4932-8e0a-562acd7abba3",
+    "seinfeld": "d0377945-f856-488d-bc1c-1cfbaccee355",
+    "narcos": "38537c84-1070-49f7-a45c-bf6c1b5a2f72",
+    "mr.robot": "b38c953d-41cd-4916-877f-a18c8eeed254",
+    "jigsaw": "46f939bd-f7de-41c5-b65b-f602cc89b427",
 }
 
 app.get([
@@ -35,8 +35,8 @@ app.get([
     let query = supabaseClient.from('movies').select();
 
     if (name) {
-            query = query.eq('name', name);
-        
+        query = query.eq('name', name);
+
         if (season) {
             query = query.eq('season', season);
 
@@ -73,7 +73,7 @@ app.get([
                     if (error) throw error;
 
                     const episodeNumbers = [...new Set(episodes.map(item => item.episode))].sort();
-                    return res.render('episodes', { episodes: episodeNumbers, name, season });
+                    return res.render('episodes', { episodes: episodeNumbers, name, season, assets });
 
                 } catch (error) {
                     return res.status(500).send(`Error: ${error.message}`);
@@ -136,7 +136,7 @@ app.get([
 
         const names = [...new Set(data.map(item => item.name))].sort();
 
-        return res.render('index', {names, assets});
+        return res.render('index', { names, assets });
 
     } catch (error) {
         return res.status(500).send(`Error: ${error.message}`);
